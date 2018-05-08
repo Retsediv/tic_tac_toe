@@ -1,5 +1,6 @@
 #include <sstream>
 #include "GameManager.h"
+#include "../utils/helpers.h"
 #include "../Board/FieldInUseException.cpp"
 
 using std::cout;
@@ -39,7 +40,7 @@ int GameManager::choose_game_mode() {
 }
 
 void GameManager::create_players(int mode) {
-    int rand_s_index = rand_int_range(0, 1);
+    int rand_s_index = get_random_number(0, 1);
     int second_s_index = (rand_s_index == 0) ? 1 : 0;
 
 

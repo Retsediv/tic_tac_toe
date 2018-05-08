@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.9)
 project(tic_tac_toe_improved)
 
 find_package(Curses REQUIRED)
@@ -11,7 +11,7 @@ file(GLOB SOURCE_FILES
         ./Player/*
         ./Board/*
         ./Manager/*
-        ./utils/*
+        utils/helpers.*
         )
 
 add_executable(tic_tac_toe ${SOURCE_FILES})

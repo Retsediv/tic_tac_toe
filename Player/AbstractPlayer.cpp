@@ -1,6 +1,9 @@
 #include "AbstractPlayer.h"
 
 using std::make_pair;
+using std::string;
+using std::pair;
+using std::vector;
 
 AbstractPlayer::AbstractPlayer(const string &name, char sign) {
     name_m = name;

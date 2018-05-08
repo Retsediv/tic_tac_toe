@@ -5,7 +5,7 @@
 
 class User : public AbstractPlayer {
 public:
-    User(const string &name, char sign);
+    User(const std::string &name, char sign);
 
     pair<int, int> get_move(int board_size, Board &board) override;
 };

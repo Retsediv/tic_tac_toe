@@ -1,29 +1,25 @@
-#include <string>
-#include "../Board/Board.h"
-
 #ifndef TIC_TAC_TOE_IMPROVED_ABSTRACTPLAYER_H
 #define TIC_TAC_TOE_IMPROVED_ABSTRACTPLAYER_H
 
-using std::string;
-using std::pair;
-using std::vector;
+#include <string>
+#include "../Board/Board.h"
 
 class AbstractPlayer {
 
 private:
-    string name_m;
+    std::string name_m;
     char sign_m;
 
 public:
-    AbstractPlayer(const string &name, char sign);
+    AbstractPlayer(const std::string &name, char sign);
 
     AbstractPlayer();
 
     virtual pair<int, int> get_move(int board_size, Board &board);
 
-    const string &getName() const;
+    const std::string &getName() const;
 
-    void setName(const string &name_m);
+    void setName(const std::string &name_m);
 
     char getSign() const;
 

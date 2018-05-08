@@ -3,7 +3,7 @@
 
 #include "AbstractPlayer.h"
 
-const string defaultEasyComputerName = "Bob";
+const std::string defaultEasyComputerName = "Bob";
 
 class EasyComputer : public AbstractPlayer {
 public:

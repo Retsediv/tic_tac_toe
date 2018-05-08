@@ -1,17 +1,13 @@
+#ifndef TIC_TAC_TOE_IMPROVED_GAMEMANAGES_H
+#define TIC_TAC_TOE_IMPROVED_GAMEMANAGES_H
+
 #include <iostream>
 #include <string>
-#include <bits/unique_ptr.h>
-#include "../utils/helpers.h"
 #include "../Board/Board.h"
 #include "../Player/AbstractPlayer.h"
 #include "../Player/User.h"
 #include "../Player/PlayerFactory.h"
 
-
-#ifndef TIC_TAC_TOE_IMPROVED_GAMEMANAGES_H
-#define TIC_TAC_TOE_IMPROVED_GAMEMANAGES_H
-
-using std::pair;
 
 class GameManager {
 private:

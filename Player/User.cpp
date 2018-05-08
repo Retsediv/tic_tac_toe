@@ -4,6 +4,10 @@
 using std::cout;
 using std::cin;
 using std::endl;
+using std::string;
+using std::pair;
+using std::vector;
+
 
 User::User(const string &name, char sign) : AbstractPlayer(name, sign) {}
 
