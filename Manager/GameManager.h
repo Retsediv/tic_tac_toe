@@ -6,6 +6,7 @@
 #include "../Board/Board.h"
 #include "../Player/AbstractPlayer.h"
 #include "../Player/User.h"
+#include "../TUI/BaseTUI.h"
 #include "../Player/PlayerFactory.h"
 
 
@@ -19,6 +20,8 @@ private:
     Board board_m;
     PlayerFactory factory = PlayerFactory();
 
+    BaseTUI *tui_;
+
     int choose_game_mode();
 
     void create_players(int mode);
@@ -26,7 +29,9 @@ private:
     void exchange_players();
 
 public:
-    explicit GameManager(int board_size);
+    explicit GameManager(int board_size, BaseTUI* tui) :
+            board_size_m(board_size), board_m(Board(board_size)), tui_(tui)
+    {};
 
     void print_help() const;
 

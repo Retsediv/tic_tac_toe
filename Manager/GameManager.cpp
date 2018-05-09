@@ -10,43 +10,20 @@ using std::string;
 using std::pair;
 using std::stringstream;
 
-GameManager::GameManager(int board_size) : board_size_m(board_size), board_m(Board(board_size)) {}
-
 void GameManager::print_help() const {
-    cout << "Hello in our Tic-Tac-Toe game." << endl;
+    tui_->print_line("Hello in our Tic-Tac-Toe game.");
 }
 
 int GameManager::choose_game_mode() {
-    cout << "Select your game mode:" << endl;
-    cout << "1) Game with friend" << endl;
-    cout << "2) Game with computer(simple)" << endl;
-    cout << "3) Game with computer(hard)" << endl;
-
-    string line;
-    int mode;
-    while (true) {
-        getline(cin, line);
-        stringstream strm(line);
-
-        strm >> mode;
-
-        if (strm.fail() || mode < 1 || mode > 4) {
-            cout << "Please, try again and enter the correct value..." << endl;
-            continue;
-        }
-
-        return mode;
-    }
+    vector<string> answ{"Game with friend", "Game with computer(simple)", "Game with computer(hard)"};
+    return tui_->select_from_choices("Select your game mode:", answ);
 }
 
 void GameManager::create_players(int mode) {
     int rand_s_index = get_random_number(0, 1);
     int second_s_index = (rand_s_index == 0) ? 1 : 0;
 
-
     players_m.first = factory.create(1, signs_m[rand_s_index]);
-//    cout << "Created: " << (*players_m.first).getName() << endl;
-
     players_m.second = factory.create(mode, signs_m[second_s_index]);
 
     if (rand_s_index != 0) {
@@ -62,36 +39,39 @@ void GameManager::exchange_players() {
 
 
 void GameManager::play() {
+    tui_->clear_screen();
+
     print_help();
     create_players(choose_game_mode());
 
     size_t steps = 0;
     while (steps < (board_size_m * board_size_m)) {
         board_m.print();
-        cout << (*players_m.first).getName() << ", it's your turn!" << endl;
+        tui_->print_line(players_m.first->getName() + ", it's your turn!");
 
         while (true) {
             try {
-                pair<int, int> move = (*players_m.first).get_move(board_size_m, board_m);
-
-                board_m.put_mark(std::make_pair(move.first - 1, move.second - 1), (*players_m.first).getSign());
-
+                pair<int, int> move = players_m.first->get_move(board_size_m, board_m);
+                board_m.put_mark(std::make_pair(move.first - 1, move.second - 1), players_m.first->getSign());
                 break;
             } catch (const FieldInUseException &e) {
-                cout << e.what();
-                cout << "Try again!!!" << endl;
+                tui_->print_line(e.what());
+                tui_->print_line("Incorrect coordinates. Try again!!!");
             }
         }
 
         if (board_m.check_win()) {
-            cout << "Congratulations!!!! " << (*players_m.first).getName() << " won!" << endl;
+            tui_->print_line("Congratulations!!!! " + players_m.first->getName() + " won!");
             board_m.print();
-            break;
+            return;
         }
 
         exchange_players();
         steps += 1;
     }
+
+
+    tui_->print_line("DRAW!!!");
 }
 
 

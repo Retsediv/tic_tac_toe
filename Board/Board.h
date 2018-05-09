@@ -16,6 +16,10 @@ public:
 
     void print() const;
 
+    inline int getSize() const { return size_m; };
+
+    inline const vector<vector<char>> &getBoard() const { return board_m; };
+
 private:
     int size_m;
     vector<vector<char>> board_m;

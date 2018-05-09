@@ -8,6 +8,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 file(GLOB SOURCE_FILES
         main.cpp
+        ./TUI/*
         ./Player/*
         ./Board/*
         ./Manager/*
