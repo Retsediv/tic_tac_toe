@@ -2,6 +2,7 @@
 #define TIC_TAC_TOE_IMPROVED_BASETUI_H
 
 #include <string>
+#include <sstream>
 #include "../Board/Board.h"
 
 class BaseTUI {
@@ -17,7 +18,27 @@ public:
 
     virtual std::string get_input() = 0;
 
-    virtual int select_from_choices(const std::string &title, const vector<std::string> &choices) = 0;
+    int select_from_choices(const std::string &title, const vector<std::string> &choices){
+        print_line(title);
+
+        for (int i = 0; i < choices.size(); ++i) {
+            print_line(std::to_string(i + 1) + ") " + choices[i]);
+        }
+
+        std::string line;
+        int ans;
+        while (true) {
+            std::stringstream strm(get_input());
+            strm >> ans;
+
+            if (strm.fail() || ans < 1 || ans > choices.size()) {
+                print_line("\"Please, try again and enter the correct value...\"");
+                continue;
+            }
+
+            return ans;
+        }
+    };
 };
 
 

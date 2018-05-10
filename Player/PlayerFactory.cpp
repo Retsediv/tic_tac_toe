@@ -27,8 +27,6 @@ AbstractPlayer *PlayerFactory::create(int mode, char sign) {
 }
 
 string PlayerFactory::input_user_name() {
-    cout << "Enter your name: ";
-    string name;
-    cin >> name;
-    return name;
+    tui_->print_line("Enter your name: ");
+    return tui_->get_input();
 }

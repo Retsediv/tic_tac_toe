@@ -20,8 +20,6 @@ public:
     void print(Board board) override;
 
     std::string get_input() override;
-
-    int select_from_choices(const std::string &title, const vector<std::string> &choices) override;
 };
 
 

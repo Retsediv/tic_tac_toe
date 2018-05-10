@@ -46,7 +46,10 @@ void GameManager::play() {
 
     size_t steps = 0;
     while (steps < (board_size_m * board_size_m)) {
-        board_m.print();
+        tui_->clear_screen();
+
+//        board_m.print();
+        tui_->print(board_m);
         tui_->print_line(players_m.first->getName() + ", it's your turn!");
 
         while (true) {
@@ -71,7 +74,7 @@ void GameManager::play() {
     }
 
 
-    tui_->print_line("DRAW!!!");
+    tui_->print_line("!!! DRAW !!!");
 }
 
 

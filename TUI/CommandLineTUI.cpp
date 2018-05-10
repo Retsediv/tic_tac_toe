@@ -33,25 +33,3 @@ string CommandLineTUI::get_input() {
     getline(cin, line);
     return line;
 }
-
-int CommandLineTUI::select_from_choices(const string &title, const vector<std::string> &choices) {
-    print_line(title);
-
-    for (int i = 0; i < choices.size(); ++i) {
-        print_line(std::to_string(i + 1) + ") " + choices[i]);
-    }
-
-    string line;
-    int ans;
-    while (true) {
-        stringstream strm(get_input());
-        strm >> ans;
-
-        if (strm.fail() || ans < 1 || ans > choices.size()) {
-            print_line("\"Please, try again and enter the correct value...\"");
-            continue;
-        }
-
-        return ans;
-    }
-}

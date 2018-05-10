@@ -6,13 +6,18 @@
 
 class NcursesTUI : public BaseTUI {
 private:
+    int yMax, xMax;
 public:
     NcursesTUI() {
         initscr(); // enter ncurses displaying
-//        getch();                     // Ожидание нажатия какой-либо клавиши пользователем
+        noecho();
+        cbreak();
+
+        getmaxyx(stdscr, yMax, xMax);
     };
 
     ~NcursesTUI() {
+        getch();  // wait for pressing any key
         endwin(); // exit from ncurses displaying. required!!!
     };
 
@@ -25,8 +30,6 @@ public:
     void print(Board board) override;
 
     std::string get_input() override;
-
-    int select_from_choices(const std::string &title, const vector<std::string> &choices) override;
 };
 
 

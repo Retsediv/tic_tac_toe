@@ -1,17 +1,22 @@
 #include "NcursesTUI.h"
 
+#include <sstream>
+
+using std::string;
+using std::stringstream;
+
 void NcursesTUI::clear_screen() {
     clear();
     refresh();
 }
 
-void NcursesTUI::print_line(std::string line) {
+void NcursesTUI::print_line(string line) {
     printw(line.c_str());
     printw("\n");
     refresh();
 }
 
-void NcursesTUI::print(std::string line) {
+void NcursesTUI::print(string line) {
     printw(line.c_str());
     refresh();
 }
@@ -20,10 +25,32 @@ void NcursesTUI::print(Board board) {
 
 }
 
-std::string NcursesTUI::get_input() {
-    return std::__cxx11::string();
-}
+string NcursesTUI::get_input() {
+    string input;
 
-int NcursesTUI::select_from_choices(const std::string &title, const vector<std::string> &choices) {
-    return 0;
+    // let the terminal do the line editing
+    nocbreak();
+    echo();
+
+    // draw input field
+    WINDOW *inputwin = newwin(3, xMax - 24, yMax - 3, 12);
+    box(inputwin, 12, 0);
+
+    wrefresh(inputwin);
+
+    // this reads from buffer after <ENTER>, not "raw"
+    // so any backspacing etc. has already been taken care of
+
+    // move window's cursor
+    wmove(inputwin, 1, 1);
+    refresh();
+
+    int ch = wgetch(inputwin);
+
+    while (ch != '\n') {
+        input.push_back(ch);
+        ch = wgetch(inputwin);
+    }
+
+    return input;
 }

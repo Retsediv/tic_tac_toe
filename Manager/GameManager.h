@@ -18,9 +18,9 @@ private:
 
     int board_size_m;
     Board board_m;
-    PlayerFactory factory = PlayerFactory();
-
     BaseTUI *tui_;
+
+    PlayerFactory factory = PlayerFactory(tui_);
 
     int choose_game_mode();
 
