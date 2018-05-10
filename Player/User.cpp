@@ -11,16 +11,16 @@ using std::vector;
 
 User::User(const string &name, char sign) : AbstractPlayer(name, sign) {}
 
-pair<int, int> User::get_move(int board_size, Board &board) {
-    cout << "Enter your choice(11, 21, and so on...)" << endl;
+pair<int, int> User::get_move(int board_size, Board &board, BaseTUI* tui_) {
+    tui_->print_line("Enter your choice(11, 21, and so on...)");
 
     string line;
     pair<int, int> coord;
     while (true) {
-        cin >> line;
+        line = tui_->get_input();
 
         if (line.length() != 2) {
-            cout << "Please, try again and enter the value in correct format..." << endl;
+            tui_->print_line("Please, try again and enter the value in correct format...");
             continue;
         }
 

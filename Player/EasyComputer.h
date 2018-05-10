@@ -9,7 +9,7 @@ class EasyComputer : public AbstractPlayer {
 public:
     explicit EasyComputer(char sign);
 
-    pair<int, int> get_move(int board_size, Board &board) override;
+    pair<int, int> get_move(int board_size, Board &board, BaseTUI* tui_) override;
 };
 
 #endif

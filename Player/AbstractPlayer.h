@@ -3,6 +3,7 @@
 
 #include <string>
 #include "../Board/Board.h"
+#include "../TUI/BaseTUI.h"
 
 class AbstractPlayer {
 
@@ -11,11 +12,11 @@ private:
     char sign_m;
 
 public:
-    AbstractPlayer(const std::string &name, char sign);
+    AbstractPlayer(const std::string &name, char sign): name_m(name), sign_m(sign){};
 
-    AbstractPlayer();
+    AbstractPlayer(): AbstractPlayer("Default username", 'X'){};
 
-    virtual pair<int, int> get_move(int board_size, Board &board);
+    virtual pair<int, int> get_move(int board_size, Board &board, BaseTUI* tui_) = 0;
 
     const std::string &getName() const;
 

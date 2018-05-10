@@ -54,7 +54,7 @@ void GameManager::play() {
 
         while (true) {
             try {
-                pair<int, int> move = players_m.first->get_move(board_size_m, board_m);
+                pair<int, int> move = players_m.first->get_move(board_size_m, board_m, tui_);
                 board_m.put_mark(std::make_pair(move.first - 1, move.second - 1), players_m.first->getSign());
                 break;
             } catch (const FieldInUseException &e) {

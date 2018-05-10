@@ -22,7 +22,14 @@ void NcursesTUI::print(string line) {
 }
 
 void NcursesTUI::print(Board board) {
-
+    for (int i = 0; i < board.getSize(); ++i) {
+        for (int j = 0; j < board.getSize(); ++j) {
+            printw("%c", board.getBoard()[i][j]);
+//            print(std::to_string( board.getBoard()[i][j] ) );
+            print(((j != (board.getSize() - 1)) ? " | " : ""));
+        }
+        print_line("");
+    }
 }
 
 string NcursesTUI::get_input() {
